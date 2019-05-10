@@ -6,5 +6,6 @@
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
     "s3_bucket": "[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')",
     "aws_profile": "default",
-    "python_interpreter": ["python3", "python"]
+    "python_interpreter": ["python3", "python"],
+    "include_starter_proj": ["n", "y"]
 }

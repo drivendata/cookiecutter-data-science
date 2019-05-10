@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.pytest_cache/
 *.py[cod]
 
 # C extensions
@@ -77,6 +78,9 @@ target/
 
 # exclude data from source control by default
 /data/
+
+# exclude pickled models since they can be un-safe
+/models/
 
 # Mac OS-specific storage files
 .DS_Store

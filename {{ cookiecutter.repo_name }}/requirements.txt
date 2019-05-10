@@ -12,4 +12,12 @@ python-dotenv>=0.5.1
 
 # backwards compatibility
 pathlib2
+
+{% endif %}
+
+{% if cookiecutter.include_starter_proj|lower == 'y' %}
+
+# requirements needed for starter Data Science project
+scikit-learn[alldeps]
+
 {% endif %}
