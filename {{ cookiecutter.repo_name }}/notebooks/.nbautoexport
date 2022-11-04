@@ -1,0 +1,8 @@
+{% if cookiecutter.nbautoexport == 'yes' %}
+{
+  "export_formats": [
+    "script"
+  ],
+  "organize_by": "extension"
+}
+{% endif %}

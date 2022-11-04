@@ -21,8 +21,9 @@ source $CCDS_ROOT/test_functions.sh
 cd $1
 make create_environment
 
-# can happen outside of environment since pipenv knows based on Pipfile
-make requirements
+# can no longer happen outside environment because we now initialize
+# nbautoexport which requires the environment be activated
+pipenv run make requirements
 
 # test with pipenv run
 pipenv run python -c "import sys; assert \"$PROJECT_NAME\" in sys.executable"

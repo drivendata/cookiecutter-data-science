@@ -25,8 +25,10 @@ requirements:
 	{% elif "Pipfile" == cookiecutter.dependency_file -%}
 	pipenv install
 	{% endif %}
+	{% if cookiecutter.nbautoexport == "yes" %}
+	nbautoexport install
+	{% endif %}
 {% endif %}
-
 
 ## Delete all compiled Python files
 clean:

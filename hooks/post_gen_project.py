@@ -1,5 +1,7 @@
 # https://github.com/cookiecutter/cookiecutter/issues/824
 #   our workaround is to include these utility functions in the CCDS package
+from urllib.request import urlretrieve
+
 from ccds.hook_utils.custom_config import write_custom_config
 from ccds.hook_utils.dependencies import write_dependencies
 
@@ -37,6 +39,11 @@ pip_only_packages = [
     "python-dotenv",
 ]
 
+# {% if cookiecutter.nbautoexport == "yes" %}
+packages += ["nbautoexport"]
+pip_only_packages += ["nbautoexport"]
+# {% endif %}
+
 #
 #  POST-GENERATION FUNCTIONS
 #
@@ -50,3 +57,10 @@ write_dependencies(
 )
 
 write_custom_config("{{ cookiecutter.custom_config }}")
+
+# {% if cookiecutter.ethics_checklist == "yes" %}
+urlretrieve(
+    "https://raw.githubusercontent.com/drivendataorg/deon/master/examples/ethics.md",
+    "ethics.md",
+)
+# {% endif %}

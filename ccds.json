@@ -6,12 +6,27 @@
     "description": "A short description of the project.",
     "python_version_number": "3.10",
     "dataset_storage": [
-        {"none": "none"},
-        {"azure": {"container": "container-name"}},
-        {"s3": {"bucket": "bucket-name", "aws_profile": "default"}},
-        {"gcs": {"bucket": "bucket-name"}}
+        {
+            "none": "none"
+        },
+        {
+            "azure": {
+                "container": "container-name"
+            }
+        },
+        {
+            "s3": {
+                "bucket": "bucket-name",
+                "aws_profile": "default"
+            }
+        },
+        {
+            "gcs": {
+                "bucket": "bucket-name"
+            }
+        }
     ],
-    "environment_manager" : [
+    "environment_manager": [
         "virtualenv",
         "conda",
         "pipenv",
@@ -26,5 +41,17 @@
         "none",
         "basic"
     ],
-    "open_source_license": ["No license file", "MIT", "BSD-3-Clause"]
+    "ethics_checklist": [
+        "yes",
+        "no"
+    ],
+    "nbautoexport": [
+        "yes",
+        "no"
+    ],
+    "open_source_license": [
+        "MIT",
+        "BSD-3-Clause",
+        "No license file"
+    ]
 }
