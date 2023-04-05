@@ -26,10 +26,24 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+
+    git clone https://github.com/drivendata/cookiecutter-data-science.git
+    cd cookiecutter-data-science
+    git checkout v2
+    pip install . 
+
+
+and then create a new project by writing 
+
+
+    ccds $PATH_TO_CCDS
+
+
+where `$PATH_TO_CCDS` is the path to where `cookiecutter-data-science` was cloned to on your machine.
 
 
 [![asciicast](https://asciinema.org/a/244658.svg)](https://asciinema.org/a/244658)
+
 
 ### New version of Cookiecutter Data Science
 ------------
