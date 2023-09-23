@@ -176,7 +176,7 @@ If you have more complex requirements for recreating your environment, consider 
 
 ### Keep secrets and configuration out of version control
 
-You _really_ don't want to leak your AWS secret key or Postgres username and password on Github. Enough said — see the [Twelve Factor App](http://12factor.net/config) principles on this point. Here's one way to do this:
+You _really_ don't want to leak your AWS secret key or Postgres username and password on Github. Enough said — see the [Twelve Factor App](https://12factor.net/config) principles on this point. Here's one way to do this:
 
 #### Store your secrets and config variables in a special file
 
