@@ -9,7 +9,7 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 ### Requirements to use the cookiecutter template:
 -----------
  - Python 2.7 or 3.5+
- - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
+ - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip or conda depending on how you manage your Python packages:
 
 ``` bash
 $ pip install cookiecutter
@@ -36,9 +36,9 @@ $ conda install cookiecutter
 Cookiecutter data science is moving to v2 soon, which will entail using
 the command `ccds ...` rather than `cookiecutter ...`. The cookiecutter command
 will continue to work, and this version of the template will still be available.
-To use the legacy template, you will need to explicitly use `-c v1` to select it.
-Please update any scripts/automation you have to append the `-c v1` option (as above),
-which is available now.
+To use the legacy template, you will need to use `-c v1` explicitly to select it.
+Please update any scripts/automation you have to append the `-c v1` option (as 
+mentioned above), and which is available now.
 
 
 ### The resulting directory structure
@@ -48,17 +48,17 @@ The directory structure of your new project looks like this:
 
 ```
 ├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
+├── Makefile           <- Makefile with commands like `make data` or `make train`.
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
+│   ├── processed      <- The final, canonical datasets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── docs               <- A default Sphinx project; see sphinx-doc.org for details.
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models             <- Trained and serialized models, model predictions, or model summaries.
 │
 ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
 │                         the creator's initials, and a short `-` delimited description, e.g.
@@ -67,30 +67,30 @@ The directory structure of your new project looks like this:
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+│   └── figures        <- Generated graphics and figures to be used in reporting.
 │
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+│                         generated with `pip freeze > requirements.txt`.
 │
-├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+├── setup.py           <- Makes project pip installable (pip install -e .) so src can be imported.
 ├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+│   ├── __init__.py    <- Makes src a Python module.
 │   │
-│   ├── data           <- Scripts to download or generate data
+│   ├── data           <- Scripts to download or generate data.
 │   │   └── make_dataset.py
 │   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
+│   ├── features       <- Scripts to turn raw data into features for modeling.
 │   │   └── build_features.py
 │   │
 │   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
+│   │   │                 predictions.
 │   │   ├── predict_model.py
 │   │   └── train_model.py
 │   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│   └── visualization  <- Scripts to create exploratory and results oriented visualizations.
 │       └── visualize.py
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io.
 ```
 
 ## Contributing

@@ -6,9 +6,9 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 
 > We're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
 
-When we think about data analysis, we often think just about the resulting reports, insights, or visualizations. While these end products are generally the main event, it's easy to focus on making the products _look nice_ and ignore the _quality of the code that generates them_. Because these end products are created programmatically, **code quality is still important**! And we're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
+When we think about data analysis, we often think just about the outcomes like reports, insights, or visualizations. While these end products are generally the main event, it's easy to focus on making the products _look nice_ and ignore the _quality of the code that generates them_. Because these end products are created programmatically, **code quality is still important**! And we're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
 
-It's no secret that good analyses are often the result of very scattershot and serendipitous explorations. Tentative experiments and rapidly testing approaches that might not work out are all part of the process for getting to the good stuff, and there is no magic bullet to turn data exploration into a simple, linear progression.
+It's no secret that good analyses are often the result of very scattershot and serendipitous explorations. Tentative experiments and rapidly testing approaches that might not work out, are all part of the process for getting to the good stuff, and there is no magic bullet to turn data exploration into a simple, linear progression.
 
 That being said, once started it is not a process that lends itself to thinking carefully about the structure of your code or project layout, so it's best to start with a clean, logical structure and stick to it throughout. We think it's a pretty big win all around to use a fairly standardized setup like this one. Here's why:
 
@@ -17,7 +17,7 @@ That being said, once started it is not a process that lends itself to thinking 
 
 > Nobody sits around before creating a new Rails project to figure out where they want to put their views; they just run `rails new` to get a standard project skeleton like everybody else.
 
-A well-defined, standard project structure means that a newcomer can begin to understand an analysis without digging in to extensive documentation. It also means that they don't necessarily have to read 100% of the code before knowing where to look for very specific things.
+A well-defined, standard project structure makes it easier for a newcomer to understand an analysis without having to read through extensive documentation. It also means that they don’t have to read all of the code before knowing where to look for specific things.
 
 Well organized code tends to be self-documenting in that the organization itself provides context for your code without much overhead. People will thank you for this because they can:
 
@@ -78,17 +78,17 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 
 ```nohighlight
 ├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
+├── Makefile           <- Makefile with commands like `make data` or `make train`.
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
+│   ├── processed      <- The final, canonical datasets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── docs               <- A default Sphinx project; see sphinx-doc.org for details.
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models             <- Trained and serialized models, model predictions, or model summaries.
 │
 ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
 │                         the creator's initials, and a short `-` delimited description, e.g.
@@ -97,30 +97,30 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+│   └── figures        <- Generated graphics and figures to be used in reporting.
 │
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+│                         generated with `pip freeze > requirements.txt`.
 │
-├── setup.py           <- Make this project pip installable with `pip install -e`
+├── setup.py           <- Make this project pip installable with `pip install -e`.
 ├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+│   ├── __init__.py    <- Makes src a Python module.
 │   │
-│   ├── data           <- Scripts to download or generate data
+│   ├── data           <- Scripts to download or generate data.
 │   │   └── make_dataset.py
 │   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
+│   ├── features       <- Scripts to turn raw data into features for modeling.
 │   │   └── build_features.py
 │   │
 │   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
+│   │   │                 predictions.
 │   │   ├── predict_model.py
 │   │   └── train_model.py
 │   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│   └── visualization  <- Scripts to create exploratory and results oriented visualizations.
 │       └── visualize.py
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io.
 ```
 
 ## Opinions
@@ -135,7 +135,7 @@ Also, if data is immutable, it doesn't need source control in the same way that 
 
 ### Notebooks are for exploration and communication
 
-Notebook packages like the [Jupyter notebook](http://jupyter.org/), [Beaker notebook](http://beakernotebook.com/), [Zeppelin](http://zeppelin-project.org/), and other literate programming tools are very effective for exploratory data analysis. However, these tools can be less effective for reproducing an analysis. When we use notebooks in our work, we often subdivide the `notebooks` folder. For example, `notebooks/exploratory` contains initial explorations, whereas `notebooks/reports` is more polished work that can be exported as html to the `reports` directory.
+Notebook packages like the [Jupyter notebook](http://jupyter.org/), [Beaker notebook](http://beakernotebook.com/), [Zeppelin](http://zeppelin-project.org/), and other literate programming tools are very effective for exploratory data analysis. However, these tools can be less effective for reproducing an analysis. When we use notebooks in our work, we often subdivide the `notebooks` folder. For example, `notebooks/exploratory` contains initial explorations, whereas `notebooks/reports` is more polished work that can be exported in html-format to the `reports` directory.
 
 Since notebooks are challenging objects for source control (e.g., diffs of the `json` are often not human-readable and merging is near impossible), we recommended not collaborating directly with others on Jupyter notebooks. There are two steps we recommend for using notebooks effectively:
 
@@ -149,7 +149,7 @@ Since notebooks are challenging objects for source control (e.g., diffs of the `
 # OPTIONAL: Load the "autoreload" extension so that code can change
 %load_ext autoreload
 
-# OPTIONAL: always reload modules so that as you change code in src, it gets loaded
+# OPTIONAL: Make sure to always reload modules so that any changes you make to the code in the ‘src’ folder are loaded
 %autoreload 2
 
 from src.data import make_dataset
@@ -163,13 +163,13 @@ There are other tools for managing DAGs that are written in Python instead of a 
 
 ### Build from the environment up
 
-The first step in reproducing an analysis is always reproducing the computational environment it was run in. You need the same tools, the same libraries, and the same versions to make everything play nicely together.
+The first step in reproducing an analysis is always reproducing the computational environment in which it was run. You need the same tools, the same libraries, and the same versions to make everything play nicely together.
 
 One effective approach to this is use [virtualenv](https://virtualenv.pypa.io/en/latest/) (we recommend [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) for managing virtualenvs). By listing all of your requirements in the repository (we include a `requirements.txt` file) you can easily track the packages needed to recreate the analysis. Here is a good workflow:
 
- 1. Run `mkvirtualenv` when creating a new project
- 2. `pip install` the packages that your analysis needs
- 3. Run `pip freeze > requirements.txt` to pin the exact package versions used to recreate the analysis
+ 1. Run `mkvirtualenv` when creating a new project.
+ 2. `pip install` the packages that your analysis needs.
+ 3. Run `pip freeze > requirements.txt` to pin the exact package versions used to recreate the analysis.
  4. If you find you need to install another package, run `pip freeze > requirements.txt` again and commit the changes to version control.
 
 If you have more complex requirements for recreating your environment, consider a virtual machine based approach such as [Docker](https://www.docker.com/) or [Vagrant](https://www.vagrantup.com/). Both of these tools use text-based formats (Dockerfile and Vagrantfile respectively) you can easily add to source control to describe how to create a virtual machine with the requirements you need.
@@ -220,7 +220,7 @@ aws_secret_access_key=mysecretkey
 aws_access_key_id=myprojectaccesskey
 aws_secret_access_key=myprojectsecretkey
 ```
-You can add the profile name when initialising a project; assuming no applicable environment variables are set, the profile credentials will be used by default.
+You can add the profile name when initialising a project. Assuming no applicable environment variables are set, the profile credentials will be used by default.
 
 ### Be conservative in changing the default folder structure
 
