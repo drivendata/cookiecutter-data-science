@@ -85,6 +85,27 @@ The directory structure of your new project will look something like this (depen
         └── visualize.py
 ```
 
+### Initializing a git repo
+
+Create a git repo and push it there:
+
+```bash
+git init
+git add .
+git commit -m "first awesome commit"
+git remote add origin <path_to_repo>
+git push -u origin main
+```
+
+### Pre-commit hooks
+
+This template uses [pre-commit](https://pre-commit.com/) to help ensure that all code is formatted correctly and passes basic checks before you commit it to git. To install pre-commit hooks, run:
+
+```bash
+pre-commit install
+pre-commit run --all-files
+```
+
 ## Using v1
 
 If you want to use the old v1 project template, you need to have either the cookiecutter-data-science package or cookiecutter package installed. Then, use either command-line program with the `-c v1` option:

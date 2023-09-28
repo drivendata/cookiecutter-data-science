@@ -14,6 +14,7 @@ packages = [
     "isort",
     "pip",
     "python-dotenv",
+    "pre-commit",
 ]
 
 # {% if cookiecutter.dataset_storage.s3 %}
