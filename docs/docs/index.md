@@ -58,7 +58,7 @@ With this in mind, we've created a data science cookiecutter template for projec
 
 ### Requirements
 
- - Python 2.7 or 3.5
+ - Python 2.7 or 3.5+
  - [cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: `pip install cookiecutter`
 
 
