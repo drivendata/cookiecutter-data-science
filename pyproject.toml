@@ -1,0 +1,44 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "ccds"
+
+[project]
+name = "cookiecutter-data-science"
+version = "2.0.0"
+description = "A logical, reasonably standardized but flexible project structure for doing and sharing data science work."
+authors = [
+  { name = "DrivenData", email = "info@drivendata.org" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+  "Development Status :: 5 - Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.7"
+dependencies = [
+  "click",
+  "cookiecutter",
+]
+
+[project.scripts]
+ccds = "ccds.__main__:main"
+
+[project.urls]
+"Homepage" = "https://drivendata.github.io/cookiecutter-data-science/"
+"Source Code" = "https://github.com/drivendata/cookiecutter-data-science/"
+"Bug Tracker" = "https://github.com/drivendata/cookiecutter-data-science/issues"
+"DrivenData" = "https://drivendata.co"

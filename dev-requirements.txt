@@ -1,0 +1,12 @@
+-e .
+
+black
+chardet
+flake8
+isort
+mkdocs
+mkdocs-cinder
+pipenv
+pytest
+virtualenvwrapper; sys_platform != 'win32'
+virtualenvwrapper-win; sys_platform == 'win32'
