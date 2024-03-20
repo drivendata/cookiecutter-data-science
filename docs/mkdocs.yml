@@ -23,6 +23,7 @@ nav:
   - Why ccds?: why.md
   - Opinions: opinions.md
   - Using the template: using-the-template.md
+  - All options: all-options.md
   - Contributing: contributing.md
   - Related projects: related.md
   - v1 Template: v1.md
@@ -43,6 +44,7 @@ markdown_extensions:
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+  - tables
   - toc:
       toc_depth: 2
 plugins:
@@ -55,4 +57,4 @@ plugins:
   - gen-files:
       scripts:
         - scripts/generate-termynal.py
-
+        - scripts/configuration-table.py
