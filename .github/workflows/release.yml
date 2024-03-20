@@ -1,0 +1,52 @@
+name: release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Build and publish new release
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r dev-requirements.txt
+
+      - name: Check that versions match
+        id: version
+        run: |
+          echo "Release tag: [${{ github.event.release.tag_name }}]"
+          PACKAGE_VERSION=$(python -c "import ccds; print(ccds.__version__)")
+          echo "Package version: [$PACKAGE_VERSION]"
+          [ ${{ github.event.release.tag_name }} == "v$PACKAGE_VERSION" ] || { exit 1; }
+          echo "::set-output name=major_minor_version::v${PACKAGE_VERSION%.*}"
+
+      - name: Build package
+        run: |
+          make dist
+          
+      - name: Publish to Test PyPI
+        uses: pypa/gh-action-pypi-publish@v1.3.0
+        with:
+          user: ${{ secrets.PYPI_TEST_USERNAME }}
+          password: ${{ secrets.PYPI_TEST_PASSWORD }}
+          repository_url: https://test.pypi.org/legacy/
+          skip_existing: true
+
+      - name: Publish to Production PyPI
+        uses: pypa/gh-action-pypi-publish@v1.3.0
+        with:
+          user: ${{ secrets.PYPI_PROD_USERNAME }}
+          password: ${{ secrets.PYPI_PROD_PASSWORD }}
+          skip_existing: false
