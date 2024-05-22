@@ -2,6 +2,7 @@
 
 ansi2html
 black
+build
 chardet
 flake8
 isort
