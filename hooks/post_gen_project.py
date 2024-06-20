@@ -5,7 +5,14 @@ from pathlib import Path
 # https://github.com/cookiecutter/cookiecutter/issues/824
 #   our workaround is to include these utility functions in the CCDS package
 from ccds.hook_utils.custom_config import write_custom_config
-from ccds.hook_utils.dependencies import basic, packages, scaffold, write_dependencies
+from ccds.hook_utils.dependencies import (
+    basic,
+    flake8_black_isort,
+    packages,
+    ruff,
+    scaffold,
+    write_dependencies,
+)
 
 #
 #  TEMPLATIZED VARIABLES FILLED IN BY COOKIECUTTER
@@ -24,6 +31,13 @@ packages_to_install += scaffold
 packages_to_install += basic
 # {% endif %}
 
+# {% if cookiecutter.linting_and_formatting == "ruff" %}
+packages_to_install += ruff
+# Remove setup.cfg
+Path("setup.cfg").unlink()
+# {% elif cookiecutter.linting_and_formatting == "flake8+black+isort" %}
+packages_to_install += flake8_black_isort
+# {% endif %}
 # track packages that are not available through conda
 pip_only_packages = [
     "awscli",

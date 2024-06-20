@@ -34,5 +34,7 @@ make
 make create_environment
 conda activate $PROJECT_NAME
 make requirements
+make lint
+make format
 
 run_tests $PROJECT_NAME $MODULE_NAME

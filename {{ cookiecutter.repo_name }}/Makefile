@@ -11,7 +11,7 @@ PYTHON_INTERPRETER = python
 #################################################################################
 
 {% if cookiecutter.dependency_file != 'none' %}
-## Install Python Dependencies
+## Install Python dependencies
 .PHONY: requirements
 requirements:
 	{% if "requirements.txt" == cookiecutter.dependency_file -%}
@@ -31,17 +31,31 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
-## Lint using flake8 and black (use `make format` to do formatting)
+{% if cookiecutter.linting_and_formatting == 'ruff' %}
+## Lint using ruff (use `make format` to do formatting)
+.PHONY: lint
+lint:
+	ruff check {{ cookiecutter.module_name }}
+
+## Format source code with ruff
+.PHONY: format
+format:
+	ruff check --fix {{ cookiecutter.module_name }}
+	ruff format {{ cookiecutter.module_name }}
+{% elif cookiecutter.linting_and_formatting == 'flake8+black+isort' %}
+## Lint using flake8, black, and isort (use `make format` to do formatting)
 .PHONY: lint
 lint:
 	flake8 {{ cookiecutter.module_name }}
-	isort --check --diff --profile black {{ cookiecutter.module_name }}
-	black --check --config pyproject.toml {{ cookiecutter.module_name }}
+	isort --check --diff {{ cookiecutter.module_name }}
+	black --check {{ cookiecutter.module_name }}
 
 ## Format source code with black
 .PHONY: format
 format:
-	black --config pyproject.toml {{ cookiecutter.module_name }}
+	isort {{ cookiecutter.module_name }}
+	black {{ cookiecutter.module_name }}
+{% endif %}
 
 {% if not cookiecutter.dataset_storage.none %}
 ## Download Data from storage system
@@ -72,7 +86,7 @@ sync_data_up:
 {% endif %}
 
 {% if cookiecutter.environment_manager != 'none' %}
-## Set up python interpreter environment
+## Set up Python interpreter environment
 .PHONY: create_environment
 create_environment:
 	{% if cookiecutter.environment_manager == 'conda' -%}
@@ -97,7 +111,7 @@ create_environment:
 #################################################################################
 
 {% if cookiecutter.include_code_scaffold == 'Yes' %}
-## Make Dataset
+## Make dataset
 .PHONY: data
 data: requirements
 	$(PYTHON_INTERPRETER) {{ cookiecutter.module_name }}/data/make_dataset.py

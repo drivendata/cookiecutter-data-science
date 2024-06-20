@@ -26,6 +26,10 @@ make create_environment
 # can happen outside of environment since pipenv knows based on Pipfile
 make requirements
 
+# linting + formatting must happen inside environment
+pipenv run make lint
+pipenv run make format
+
 # test with pipenv run
 pipenv run python -c "import sys; assert \"$PROJECT_NAME\" in sys.executable"
 

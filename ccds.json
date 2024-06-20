@@ -26,6 +26,10 @@
         "none",
         "basic"
     ],
+    "linting_and_formatting": [
+        "ruff",
+        "flake8+black+isort"
+    ],
     "open_source_license": ["No license file", "MIT", "BSD-3-Clause"],
     "docs": ["mkdocs", "none"],
     "include_code_scaffold": ["Yes", "No"]

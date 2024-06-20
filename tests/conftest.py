@@ -57,22 +57,40 @@ def config_generator(fast=False):
     # remove invalid configs
     configs = [c for c in configs if _is_valid(c)]
 
-    # cycle over all values other multi-select fields that should be inter-operable
+    # ensure linting and formatting options are run on code scaffold
+    # otherwise, linting "passes" because one linter never runs on any code during tests
+    code_format_cycler = cycle(
+        product(
+            [
+                ("include_code_scaffold", opt)
+                for opt in cookiecutter_json["include_code_scaffold"]
+            ],
+            [
+                ("linting_and_formatting", opt)
+                for opt in cookiecutter_json["linting_and_formatting"]
+            ],
+        )
+    )
+
+    # cycle over values for multi-select fields that should be inter-operable
     # and that we don't need to handle with combinatorics
     cycle_fields = [
         "dataset_storage",
         "open_source_license",
-        "include_code_scaffold",
         "docs",
     ]
-    cyclers = {k: cycle(cookiecutter_json[k]) for k in cycle_fields}
+    multi_select_cyclers = {k: cycle(cookiecutter_json[k]) for k in cycle_fields}
 
     for ind, c in enumerate(configs):
         config = dict(c)
         config.update(default_args)
-        # Alternate including the code scaffold
-        for field, cycler in cyclers.items():
+
+        code_format_settings = dict(next(code_format_cycler))
+        config.update(code_format_settings)
+
+        for field, cycler in multi_select_cyclers.items():
             config[field] = next(cycler)
+
         config["repo_name"] += f"-{ind}"
         yield config
 

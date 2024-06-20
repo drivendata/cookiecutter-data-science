@@ -49,7 +49,6 @@ def test_baking_configs(config, fast):
     with bake_project(config) as project_directory:
         verify_folders(project_directory, config)
         verify_files(project_directory, config)
-        lint(project_directory)
 
         if fast < 2:
             verify_makefile_commands(project_directory, config)
@@ -100,7 +99,6 @@ def verify_files(root, config):
         "Makefile",
         "README.md",
         "pyproject.toml",
-        "setup.cfg",
         ".env",
         ".gitignore",
         "data/external/.gitkeep",
@@ -119,6 +117,9 @@ def verify_files(root, config):
     # conditional files
     if not config["open_source_license"].startswith("No license"):
         expected_files.append("LICENSE")
+
+    if config["linting_and_formatting"] == "flake8+black+isort":
+        expected_files.append("setup.cfg")
 
     if config["include_code_scaffold"] == "Yes":
         expected_files += [
@@ -156,6 +157,8 @@ def verify_makefile_commands(root, config):
     - blank command listing commands
     - create_environment
     - requirements
+    - linting
+    - formatting
     Ensure that these use the proper environment.
     """
     test_path = Path(__file__).parent
@@ -184,23 +187,20 @@ def verify_makefile_commands(root, config):
         stdout=PIPE,
     )
 
-    stdout_output, _ = _decode_print_stdout_stderr(result)
+    stdout_output, stderr_output = _decode_print_stdout_stderr(result)
 
     # Check that makefile help ran successfully
     assert "Available rules:" in stdout_output
     assert "clean                    Delete all compiled Python files" in stdout_output
 
-    assert result.returncode == 0
-
-
-def lint(root):
-    """Run the linters on the project."""
-    result = run(
-        ["make", "lint"],
-        cwd=root,
-        stderr=PIPE,
-        stdout=PIPE,
-    )
-    _, _ = _decode_print_stdout_stderr(result)
+    # Check that linting and formatting ran successfully
+    if config["linting_and_formatting"] == "ruff":
+        assert "All checks passed!" in stdout_output
+        assert "left unchanged" in stdout_output
+        assert "reformatted" not in stdout_output
+    elif config["linting_and_formatting"] == "flake8+black+isort":
+        assert "All done!" in stderr_output
+        assert "left unchanged" in stderr_output
+        assert "reformatted" not in stderr_output
 
     assert result.returncode == 0

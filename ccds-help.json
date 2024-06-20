@@ -203,6 +203,29 @@
         ]
     },
     {
+        "field": "linting_and_formatting",
+        "help": {
+            "description": "How to handle linting and formatting on your code.",
+            "more_information": ""
+        },
+        "choices": [
+            {
+                "choice": "ruff",
+                "help": {
+                    "description": "Use ruff for linting and formatting.",
+                    "more_information": ""
+                } 
+            },
+            {
+                "choice": "flake8+black+isort",
+                "help": {
+                    "description": "Use flake8 for linting and black+isort for formatting.",
+                    "more_information": ""
+                } 
+            }
+        ]
+    },
+    {
         "field": "open_source_license",
         "help": {
             "description": "Whether to include a license file and which one to use.",
